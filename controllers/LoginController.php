@@ -30,7 +30,7 @@ class LoginController{
             $_SESSION['login'] = true;
 
             //Redireccionar
-            header('Location: /proyectos');
+            header('Location: /dashboard');
           }else{
             Usuario::setAlerta('error', 'Password Incorrecto');
           }
@@ -46,7 +46,9 @@ class LoginController{
   }
 
   public static function logout(){
-    echo "Desde Logout";
+    session_start();
+    $_SESSION = [];
+    header('Location: /');
   }
 
   public static function crear(Router $router){
