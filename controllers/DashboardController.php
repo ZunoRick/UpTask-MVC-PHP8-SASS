@@ -155,4 +155,33 @@ class DashboardController{
       'alertas' => $alertas
     ]);
   }
+
+  public static function eliminar_proyeto(){
+    session_start();
+
+    $alertas = [];
+
+    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+      $proyecto = Proyecto::where('url', $_POST['idProyecto']);
+
+      if (!$proyecto || $proyecto->propietarioId !== $_SESSION['id']) {
+        $respuesta = [
+          'tipo' => 'error',
+          'mensaje' => 'Hubo un error al eliminar el proyecto'
+        ];
+        echo json_encode($respuesta);
+        return;
+      }
+
+      $resultado = $proyecto->eliminar();
+      if ($resultado) {
+        $respuesta = [
+          'tipo' => 'exito',
+          'mensaje' => 'El proyecto se eliminó correctamente'
+        ];
+        echo json_encode($respuesta);
+        return;
+      }
+    }
+  }
 }

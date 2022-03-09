@@ -7,6 +7,9 @@
         class="agregar-tarea"
         id="agregar-tarea"
       >&#43; Nueva Tarea</button>
+      <button class="eliminar-proyecto" id="eliminar-proyecto">
+        <i class="uil uil-trash-alt"></i>
+      </button>
     </div>
 
     <div id="filtros" class="filtros">
